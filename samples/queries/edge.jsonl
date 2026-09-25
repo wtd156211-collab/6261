@@ -1,0 +1,13 @@
+{"id": "edge-ge-max", "op": "ge", "value": 2230}
+{"id": "edge-gt-max", "op": "gt", "value": 2230}
+{"id": "edge-le-min", "op": "le", "value": 2000}
+{"id": "edge-lt-min", "op": "lt", "value": 2000}
+{"id": "edge-full-span", "op": "between", "lo": 2000, "hi": 2230}
+{"id": "edge-eq-min", "op": "eq", "value": 2000}
+{"id": "edge-eq-max", "op": "eq", "value": 2230}
+{"id": "edge-eq-below", "op": "eq", "value": 1999}
+{"id": "edge-eq-above", "op": "eq", "value": 2231}
+{"id": "edge-between-above", "op": "between", "lo": 2231, "hi": 2300}
+{"id": "edge-ne-min", "op": "ne", "value": 2000}
+{"id": "edge-ne-inside", "op": "ne", "value": 2100}
+{"id": "edge-pair", "op": "and", "args": [{"op": "ge", "value": 2000}, {"op": "le", "value": 2010}]}

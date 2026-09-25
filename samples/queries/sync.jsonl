@@ -1,0 +1,6 @@
+{"id": "sync-lt", "op": "lt", "value": 3005}
+{"id": "sync-mid", "op": "between", "lo": 3010, "hi": 3280}
+{"id": "sync-tail", "op": "ge", "value": 3295}
+{"id": "sync-ne", "op": "ne", "value": 3045}
+{"id": "sync-pair", "op": "and", "args": [{"op": "ge", "value": 3005}, {"op": "le", "value": 3010}]}
+{"id": "sync-above", "op": "gt", "value": 3510}

@@ -1,0 +1,7 @@
+{"id": "part-two-bands", "op": "between", "lo": 1150, "hi": 1350}
+{"id": "part-open-interval", "op": "and", "args": [{"op": "gt", "value": 1100}, {"op": "lt", "value": 1300}]}
+{"id": "part-with-hole", "op": "and", "args": [{"op": "between", "lo": 1000, "hi": 1306}, {"op": "ne", "value": 1203}]}
+{"id": "part-ge", "op": "ge", "value": 1450}
+{"id": "part-eq", "op": "eq", "value": 1100}
+{"id": "part-top-three-bands", "op": "ge", "value": 1300}
+{"id": "part-band0-tail", "op": "between", "lo": 1004, "hi": 1006}

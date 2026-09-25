@@ -1,0 +1,6 @@
+{"id": "cut-above", "op": "gt", "value": 100000}
+{"id": "cut-below", "op": "lt", "value": 500}
+{"id": "cut-inside-gap", "op": "between", "lo": 40000, "hi": 50000}
+{"id": "cut-eq-gap", "op": "eq", "value": 55555}
+{"id": "cut-band-b", "op": "between", "lo": 90000, "hi": 90010}
+{"id": "cut-tail", "op": "ge", "value": 90015}

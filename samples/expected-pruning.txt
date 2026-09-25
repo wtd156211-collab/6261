@@ -1,0 +1,38 @@
+# 每条查询期望扫描的块数上界
+# S = 你选的块容量（行/块）；H = 该查询在对应数据上的命中行数。
+# 上界 0：条件与整表的 ts 范围无交集，任何块都留不下，一块都不许扫。
+# 上界 ceil(H/S)+2：只允许扫命中行所在的块，再往外各留一块的余量。
+# sync 组的上界按变更文件跑完之后的状态算。
+# 格式：<查询 id> TAB <命中行数> TAB <上界> TAB <说明>
+cut-above	0	0	条件与整表 ts 范围无交集，一块都不许扫
+cut-below	0	0	条件与整表 ts 范围无交集，一块都不许扫
+cut-inside-gap	0	ceil(0/S)+2	命中行所在块再往外两块
+cut-eq-gap	0	ceil(0/S)+2	命中行所在块再往外两块
+cut-band-b	11	ceil(11/S)+2	命中行所在块再往外两块
+cut-tail	5	ceil(5/S)+2	命中行所在块再往外两块
+part-two-bands	14	ceil(14/S)+2	命中行所在块再往外两块
+part-open-interval	13	ceil(13/S)+2	命中行所在块再往外两块
+part-with-hole	27	ceil(27/S)+2	命中行所在块再往外两块
+part-ge	7	ceil(7/S)+2	命中行所在块再往外两块
+part-eq	1	ceil(1/S)+2	命中行所在块再往外两块
+part-top-three-bands	21	ceil(21/S)+2	命中行所在块再往外两块
+part-band0-tail	3	ceil(3/S)+2	命中行所在块再往外两块
+edge-ge-max	2	ceil(2/S)+2	命中行所在块再往外两块
+edge-gt-max	0	0	条件与整表 ts 范围无交集，一块都不许扫
+edge-le-min	2	ceil(2/S)+2	命中行所在块再往外两块
+edge-lt-min	0	0	条件与整表 ts 范围无交集，一块都不许扫
+edge-full-span	24	ceil(24/S)+2	命中行所在块再往外两块
+edge-eq-min	2	ceil(2/S)+2	命中行所在块再往外两块
+edge-eq-max	2	ceil(2/S)+2	命中行所在块再往外两块
+edge-eq-below	0	0	条件与整表 ts 范围无交集，一块都不许扫
+edge-eq-above	0	0	条件与整表 ts 范围无交集，一块都不许扫
+edge-between-above	0	0	条件与整表 ts 范围无交集，一块都不许扫
+edge-ne-min	22	ceil(22/S)+2	命中行所在块再往外两块
+edge-ne-inside	23	ceil(23/S)+2	命中行所在块再往外两块
+edge-pair	3	ceil(3/S)+2	命中行所在块再往外两块
+sync-lt	1	ceil(1/S)+2	命中行所在块再往外两块
+sync-mid	28	ceil(28/S)+2	命中行所在块再往外两块
+sync-tail	3	ceil(3/S)+2	命中行所在块再往外两块
+sync-ne	32	ceil(32/S)+2	命中行所在块再往外两块
+sync-pair	2	ceil(2/S)+2	命中行所在块再往外两块
+sync-above	0	0	条件与整表 ts 范围无交集，一块都不许扫
