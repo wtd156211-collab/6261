@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>zonecut 块剪枝 · cut-band-b</title>
+<style>
+  :root { color-scheme: light; }
+  * { box-sizing: border-box; }
+  body { margin: 0; padding: 24px; font-family: "PingFang SC", "Microsoft YaHei", system-ui, sans-serif; background: #f6f7f9; color: #1f2329; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .meta { color: #5a6069; font-size: 13px; margin-bottom: 16px; }
+  .meta code { background: #eceef1; padding: 1px 6px; border-radius: 4px; }
+  .stats { display: flex; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+  .stat { background: #fff; border: 1px solid #e2e5ea; border-radius: 10px; padding: 12px 18px; min-width: 130px; }
+  .stat .num { display: block; font-size: 24px; font-weight: 650; font-variant-numeric: tabular-nums; }
+  .stat .label { font-size: 12px; color: #7a828d; }
+  .filters { margin-bottom: 12px; font-size: 13px; }
+  .filters button { border: 1px solid #d4d8de; background: #fff; border-radius: 999px; padding: 4px 14px; margin-right: 6px; cursor: pointer; font-size: 13px; }
+  .filters button.active { background: #1f2329; color: #fff; border-color: #1f2329; }
+  .legend { display: inline-flex; gap: 12px; margin-left: 14px; color: #5a6069; }
+  .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
+  .dot.hit { background: #34a853; } .dot.scanned { background: #f4b400; } .dot.skip { background: #c4c9d1; }
+  table { border-collapse: collapse; width: 100%; background: #fff; font-size: 13px; font-variant-numeric: tabular-nums; }
+  th, td { padding: 6px 12px; text-align: right; border-bottom: 1px solid #eef0f3; }
+  th { position: sticky; top: 0; background: #fafbfc; color: #5a6069; font-weight: 600; text-align: right; }
+  th:nth-child(2), td:nth-child(2) { text-align: left; }
+  tbody tr { border-left: 4px solid transparent; }
+  tbody tr[data-state="hit"] { background: #e8f5ec; border-left-color: #34a853; }
+  tbody tr[data-state="scanned"] { background: #fdf4dc; border-left-color: #f4b400; }
+  tbody tr[data-state="skip"] { background: #f0f1f4; border-left-color: #c4c9d1; color: #8a9099; }
+  tbody tr.hidden { display: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>块级剪枝结果</h1>
+  <p class="meta">查询 <code>cut-band-b</code> · 条件 <code>between 90000 90010</code> · 命中 11 行</p>
+  <div class="stats">
+    <div class="stat" data-key="scanned"><span class="num">1</span><span class="label">扫描块数</span></div>
+    <div class="stat" data-key="skipped"><span class="num">13</span><span class="label">跳过块数</span></div>
+    <div class="stat" data-key="blocks"><span class="num">14</span><span class="label">总块数</span></div>
+    <div class="stat" data-key="prune-rate"><span class="num">92.9%</span><span class="label">剪枝率</span></div>
+  </div>
+  <div class="filters">
+    <button data-filter="all" class="active">全部</button><button data-filter="hit">命中</button><button data-filter="scanned">扫过</button><button data-filter="skip">跳过</button><span class="legend"><span><span class="dot hit"></span>命中</span><span><span class="dot scanned"></span>扫过</span><span><span class="dot skip"></span>跳过</span></span>
+  </div>
+</header>
+<table id="blocks">
+  <thead><tr><th>块号</th><th>状态</th><th>行数</th><th>min_ts</th><th>max_ts</th></tr></thead>
+  <tbody>
+<tr data-block="0" data-state="skip" data-rows="20" data-min="1000" data-max="1019" data-empty="0"><td>0</td><td>跳过</td><td>20</td><td>1000</td><td>1019</td></tr>
+<tr data-block="1" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>1</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="2" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>2</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="3" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>3</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="4" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>4</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="5" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>5</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="6" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>6</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="7" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>7</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="8" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>8</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="9" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>9</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="10" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>10</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="11" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>11</td><td>跳过</td><td>0</td><td>-</td><td>-</td></tr>
+<tr data-block="12" data-state="hit" data-rows="16" data-min="90000" data-max="90015" data-empty="0"><td>12</td><td>命中</td><td>16</td><td>90000</td><td>90015</td></tr>
+<tr data-block="13" data-state="skip" data-rows="4" data-min="90016" data-max="90019" data-empty="0"><td>13</td><td>跳过</td><td>4</td><td>90016</td><td>90019</td></tr>
+  </tbody>
+</table>
+<script type="module">
+const buttons = document.querySelectorAll(".filters button");
+const rows = document.querySelectorAll("#blocks tbody tr");
+for (const button of buttons) {
+  button.addEventListener("click", () => {
+    for (const b of buttons) b.classList.toggle("active", b === button);
+    const filter = button.dataset.filter;
+    for (const row of rows) {
+      row.classList.toggle("hidden", filter !== "all" && row.dataset.state !== filter);
+    }
+  });
+}
+</script>
+</body>
+</html>
