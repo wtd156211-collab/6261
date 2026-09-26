@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>zonecut 块剪枝 · sync-mid</title>
+<style>
+body { font-family: system-ui, sans-serif; margin: 2rem; color: #222; }
+header { margin-bottom: 1.2rem; }
+h1 { font-size: 1.3rem; margin: 0 0 .8rem; }
+.stats { display: flex; gap: 1.5rem; margin: 0; }
+.stats div { background: #f4f4f4; border-radius: 8px; padding: .6rem 1rem; }
+.stats dt { font-size: .8rem; color: #666; }
+.stats dd { margin: .2rem 0 0; font-size: 1.4rem; font-weight: 600; }
+table { border-collapse: collapse; width: 100%; font-size: .85rem; }
+th, td { padding: .3rem .7rem; text-align: right; border-bottom: 1px solid #e5e5e5; }
+th { background: #fafafa; position: sticky; top: 0; }
+tr[data-state="hit"] { background: #d8f3dc; }
+tr[data-state="scanned"] { background: #fff3cd; }
+tr[data-state="skip"] { background: #e9ecef; color: #868e96; }
+tr.picked { outline: 2px solid #4263eb; outline-offset: -2px; }
+.legend { margin: .6rem 0 1rem; font-size: .8rem; color: #666; }
+.sw { display: inline-block; width: .8em; height: .8em; border-radius: 2px;
+      margin: 0 .3em 0 1em; vertical-align: baseline; }
+</style>
+</head>
+<body>
+<header>
+<h1>zonecut 块剪枝 · 查询 <code>sync-mid</code> · 命中 28 行</h1>
+<dl class="stats">
+<div><dt>扫描块数</dt><dd data-key="scanned">5</dd></div>
+<div><dt>跳过块数</dt><dd data-key="skipped">1</dd></div>
+<div><dt>总块数</dt><dd data-key="blocks">6</dd></div>
+<div><dt>剪枝率</dt><dd data-key="prune-rate">16.7%</dd></div>
+</dl>
+<p class="legend">块状态：<span class="sw" style="background:#d8f3dc"></span>命中
+<span class="sw" style="background:#fff3cd"></span>扫描无命中
+<span class="sw" style="background:#e9ecef"></span>跳过（含空块）</p>
+</header>
+<table id="blocks">
+<thead><tr><th>块号</th><th>状态</th><th>行数</th><th>min_ts</th><th>max_ts</th><th>空块</th></tr></thead>
+<tbody>
+<tr data-block="0" data-state="hit" data-rows="8" data-min="3010" data-max="3295" data-empty="0"><td>0</td><td>命中</td><td>8</td><td>3010</td><td>3295</td><td>否</td></tr><tr data-block="1" data-state="hit" data-rows="8" data-min="3045" data-max="3140" data-empty="0"><td>1</td><td>命中</td><td>8</td><td>3045</td><td>3140</td><td>否</td></tr><tr data-block="2" data-state="hit" data-rows="8" data-min="3160" data-max="3230" data-empty="0"><td>2</td><td>命中</td><td>8</td><td>3160</td><td>3230</td><td>否</td></tr><tr data-block="3" data-state="hit" data-rows="6" data-min="3005" data-max="3280" data-empty="0"><td>3</td><td>命中</td><td>6</td><td>3005</td><td>3280</td><td>否</td></tr><tr data-block="4" data-state="skip" data-rows="0" data-min="-" data-max="-" data-empty="1"><td>4</td><td>跳过</td><td>0</td><td>-</td><td>-</td><td>是</td></tr><tr data-block="5" data-state="scanned" data-rows="3" data-min="2990" data-max="3510" data-empty="0"><td>5</td><td>扫描</td><td>3</td><td>2990</td><td>3510</td><td>否</td></tr>
+</tbody>
+</table>
+<script type="module">
+// 仅做装饰性交互（点击高亮一行），所有数字都来自引擎输出，页面不重算。
+document.getElementById("blocks").addEventListener("click", (event) => {
+  const row = event.target.closest("tr[data-block]");
+  if (row) row.classList.toggle("picked");
+});
+</script>
+</body>
+</html>
